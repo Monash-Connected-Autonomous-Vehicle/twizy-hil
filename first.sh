@@ -4,6 +4,9 @@
 if [ -n "$1" ]; then
     cd "$1" || { echo "Invalid directory path"; exit 1; }
 else
+# ~/test_sd/ack_ws's src folder contains the following packages:
+# SD-VehicleInterface (ackermann branch): https://github.com/Monash-Connected-Autonomous-Vehicle/SD-VehicleInterface/tree/ackermann
+# autoware_msgs: https://github.com/autowarefoundation/autoware_msgs
     cd ~/test_sd/ack_ws || { echo "Default directory does not exist"; exit 1; }
 fi
 
