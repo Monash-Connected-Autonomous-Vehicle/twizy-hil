@@ -4,21 +4,49 @@ Repo includes scripts to launch vehicle interface and/or run HIL (Hardware in th
 **Prerequsites**: Follow all steps up to step 10 of [these notion docs](https://www.notion.so/monashcav/Running-HIL-cdd7e7b4e40f4a82aa159b362434f809)
 
 ### Launch Vehicle Interface
-Run `first.sh` and provide path to vehicle interface ros workspace (if none provided, it defaults to `~/test_sd/ack_ws`)
-1. Open run `first.sh` on one terminal (SSH or Anydesk)
+Use the unified `twizy.sh` entrypoint. This prepares and launches the SD Vehicle Interface for the Twizy.
+
+1. (First time only per workspace) run setup:
+
 ```bash
-./first.sh # defaults to ~/test_sd/ack_ws
+./twizy.sh setup               # uses default workspace
+```
+
+2. In a terminal (SSH or Anydesk), launch the vehicle interface:
+
+```bash
+./twizy.sh interface
 ```
 or 
 ```bash
-./first.sh ~/path_to_ros_ws
+./first.sh                     # optional workspace argument still supported
 ```
 
-### Launch Planning Simulation GUI (and perform HIL)
-1. Follow *Launch Vehicle Interface* instructions
-2. Run `second.sh` on another terminal and (optional) providing path to autoware workspace (if none provided, it defaults to `~/sept_autoware_dir/autoware`)
-3. Follow the remaining of [the notion docs](https://www.notion.so/monashcav/Running-HIL-cdd7e7b4e40f4a82aa159b362434f809) (steps 11 to end)
+### Launch Controller
+2. In another terminal, launch the controller:
 
+```bash
+./twizy.sh controller
+```
+
+or
+
+```bash
+./second.sh                    # optional workspace argument still supported
+```
+
+### Testing different SD-VehicleInterface branches
+
+Switch your `SD-VehicleInterface` repo branch quickly:
+
+```bash
+./twizy.sh branch-test <branchname>
+```
+
+## Launch Legacy Autoware Planning Simulator GUI
+- `autowareSimulation.sh`
+- [the notion docs](https://www.notion.so/monashcav/Running-HIL-cdd7e7b4e40f4a82aa159b362434f809)
+   (steps 11 to end).
 ![rviz snippet](rviz_snippet.png)
 
 #### Common Issue
